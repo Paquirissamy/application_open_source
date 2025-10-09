@@ -20,8 +20,7 @@ A clear, concise description of what your project does and why it exists. Explai
 - **Feature 5**: More functionality
 
 ## Demo
-
-[Live Demo](https://your-demo-url.com) | [Video Walkthrough](https://youtube.com/...)
+<img width="500" height="500" alt="ChippypayLogo" src="https://github.com/user-attachments/assets/faacf2d5-4c3f-4b6c-a624-90c21be0d3b8" />
 
 ![Screenshot or GIF of the application](./docs/screenshot.png)
 
@@ -31,6 +30,7 @@ A clear, concise description of what your project does and why it exists. Explai
 - React.js 18+
 - Tailwind CSS for styling
 - Axios for API calls
+
 - React Router for navigation
 
 **Backend:**
