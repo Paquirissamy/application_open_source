@@ -5,6 +5,8 @@ import "./index.css";
 import Service from "./Pages/Service";
 import About from "./Pages/About";
 import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -16,8 +18,12 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/About" element={<About />}></Route>
           <Route path="/Service" element={<Service />}></Route>
+          <Route path="/register" element={<Register />}></Route>
           <Route path="/*" element={<h1>404</h1>}></Route>
         </Routes>
+        <div className="flex justify-center">
+          <Footer></Footer>
+        </div>
       </BrowserRouter>
     </>
   );
