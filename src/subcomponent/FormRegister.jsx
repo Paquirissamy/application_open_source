@@ -2,6 +2,10 @@ import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Formuser, ProviderFormUser } from "@/hooks/useConxtext";
+import { useContext, useEffect, useState } from "react";
+
+import axios from "axios";
 
 function FormRegister() {
   const {
@@ -9,55 +13,81 @@ function FormRegister() {
     handleSubmit,
     formState: { errors, isLoading },
   } = useForm();
+  const [data, setdata] = useState({
+    err: "",
+    data: "",
+  });
+  const [user, setuser] = useState();
+  const FormdataClients = useContext(Formuser);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (dataForm) => {
+    setuser(dataForm);
+    axios
+      .post("http://192.168.1.186:3308/auth/user/register", {
+        ...dataForm,
+      })
+      .then((res) => {
+        setdata({ ...data, data: res.data });
+      })
+      .catch((er) => {
+        setdata({ ...data, err: er });
+      });
   };
-  console.log(errors);
+
   return (
-    <div className="m-15 flex justify-center">
+    <div className="m-15 flex justify-center bg-blue-200  rounded-2xl p-15">
       <form onSubmit={handleSubmit(onSubmit)} className="">
         <Label> Name</Label>
         <Input
-          {...register("first_name", {
+          {...register("firstName", {
             required: true,
           })}
           placeholder="Doe"
-          id="first_name"
+          id="firstName"
         ></Input>
         <Label> Last Name </Label>
         <Input
-          {...register("last_name", {
+          {...register("lastName", {
             required: true,
           })}
           placeholder="John"
-          id="last_name"
+          id="lastName"
         ></Input>
 
         <Label>Email</Label>
         <Input
-          {...register("email ", {
+          {...register("email", {
             required: true,
           })}
+          {...(errors.email && (
+            <div>
+              <p> {errors.email.message} </p>
+            </div>
+          ))}
           id="email"
-          type="email"
+          // type="email"
           placeholder="example@homail.com"
         ></Input>
 
         <Label>Password</Label>
         <Input
-          {...register("password", {
+          {...register("pass", {
             required: true,
+            minLength: 8,
+            pattern: {
+              message: "please entry 8 character ! ",
+            },
           })}
           placeholder="*********"
           type="password"
           id="password"
         ></Input>
         <br></br>
-        <Button className="w-[200px]" variant="outline">
+        <Button className="w-[215px]" variant="outline">
           {" "}
           Sign-up
         </Button>
+        <ProviderFormUser></ProviderFormUser>
       </form>
     </div>
   );

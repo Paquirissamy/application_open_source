@@ -7,6 +7,7 @@ import About from "./Pages/About";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Footer from "./components/footer";
+import TemplateCharacter from "./Pages/Templates/TemplateCharacter";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/About" element={<About />}></Route>
           <Route path="/Service" element={<Service />}></Route>
+          <Route
+            path="/template-character-1"
+            element={<TemplateCharacter />}
+          ></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/*" element={<h1>404</h1>}></Route>
         </Routes>

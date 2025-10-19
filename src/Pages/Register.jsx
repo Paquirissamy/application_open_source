@@ -1,6 +1,8 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
 import FormRegister from "@/subcomponent/FormRegister";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 function Register() {
@@ -9,6 +11,7 @@ function Register() {
     handleSubmit,
     formState: { errors, isLoading },
   } = useForm();
+
   return (
     <>
       <FormRegister></FormRegister>

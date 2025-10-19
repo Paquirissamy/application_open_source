@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import "../assets/ChippypayLogo.png";
 import { ToastContainer, toast } from "react-toastify";
 import { NavLink, Link } from "react-router-dom";
-import { PrivateRoute } from "@/hooks/PrivateRoute";
 
 function FormLogin() {
   const {
@@ -20,9 +19,9 @@ function FormLogin() {
     console.log(data);
   };
   return (
-    <div className=" m-15 flex justify-center">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-screen  ">
-        <div className=" justify-center-safe">
+    <div className=" m-20 flex  rounded-2xl bg-blue-200  p-10 justify-center">
+      <form onSubmit={handleSubmit(onSubmit)} className=" ">
+        <div className="  justify-center ">
           <Label>Email</Label>
           <Input
             {...register("email", {
