@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import "../assets/ChippypayLogo.png";
 import { ToastContainer, toast } from "react-toastify";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, data } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function FormLogin() {
   const {
@@ -14,10 +16,26 @@ function FormLogin() {
   } = useForm({
     mode: "onTouched",
   });
-
+  const [user, setuser] = useState(false);
   const onSubmit = async (data) => {
-    console.log(data);
+    setuser(data);
   };
+
+  const handleConnection = async () => {
+    const response = await axios
+      .post("http://localhost:3306/auth/user/login", {
+        ...user,
+      })
+      .then((data) => {
+        if (!data.data.success) {
+          const notify = () =>
+            toast.error("Eureru  dans le mot de passe ou email ! ");
+        }
+        setuser(true);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className=" m-20 flex  rounded-2xl bg-blue-200  p-10 justify-center">
       <form onSubmit={handleSubmit(onSubmit)} className=" ">
@@ -42,7 +60,11 @@ function FormLogin() {
             type="password"
           ></Input>
           <br />
-          <Button className="w-[180px]" variant="outline">
+          <Button
+            className="w-[250px]"
+            variant="outline"
+            onClick={() => handleConnection}
+          >
             Login
           </Button>
           <span className="flex">

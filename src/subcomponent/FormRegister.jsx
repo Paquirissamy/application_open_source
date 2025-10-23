@@ -6,6 +6,8 @@ import { Formuser, ProviderFormUser } from "@/hooks/useConxtext";
 import { useContext, useEffect, useState } from "react";
 
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import Register from "@/Pages/Register";
 
 function FormRegister() {
   const {
@@ -23,7 +25,7 @@ function FormRegister() {
   const onSubmit = async (dataForm) => {
     setuser(dataForm);
     axios
-      .post("http://192.168.1.186:3308/auth/user/register", {
+      .post("http://localhost:3306/auth/user/register", {
         ...dataForm,
       })
       .then((res) => {
